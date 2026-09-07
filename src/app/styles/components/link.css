@@ -1,0 +1,17 @@
+@layer components {
+  .link {
+    @apply text-text-primary hover:text-primary transition-colors;
+  }
+
+  .link.active {
+    @apply text-primary underline underline-offset-2;
+  }
+
+  .link-button {
+    @apply px-5 py-2.5 rounded-lg bg-primary hover:bg-secondary text-text-button transition-colors duration-200 inline-flex items-center justify-center gap-2 border-0 no-underline;
+  }
+
+  .link-button.outline {
+    @apply bg-transparent text-primary border border-primary hover:border-secondary hover:text-secondary;
+  }
+}
