@@ -1,3 +1,4 @@
+import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 import { Advantages } from './Advantages'
 import { Banner } from './Banner'
@@ -18,6 +19,7 @@ export const HomePage = () => {
         <Advantages />
         <CtaBanner />
       </main>
+      <Footer />
     </>
   )
 }
