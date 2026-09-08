@@ -1,4 +1,5 @@
 import { Header } from '@/widgets/header'
+import { Advantages } from './Advantages'
 import { Banner } from './Banner'
 import { NewProducts } from './NewProducts'
 import { PopularProducts } from './PopularProducts'
@@ -13,6 +14,7 @@ export const HomePage = () => {
         <PopularProducts />
         <Banner />
         <NewProducts />
+        <Advantages />
       </main>
     </>
   )

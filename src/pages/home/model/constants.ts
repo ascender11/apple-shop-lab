@@ -42,3 +42,37 @@ export const SLIDES: Slide[] = [
     color: '#ffffff',
   },
 ]
+
+export const ADVANTAGES = [
+  {
+    icon: '/home/discount-emoji.png',
+    title: 'Promotions and gifts',
+    description: 'Regular promotions, bonuses and discounts. buy apple products at the best prices',
+    gradient: 'linear-gradient(180deg, #fe94a6 0%, #f2f2f2 100%)',
+  },
+  {
+    icon: '/home/wallet-emoji.png',
+    title: 'Convenient payment methods',
+    description: 'Cash or card on delivery, online payment or credit',
+    gradient: 'linear-gradient(180deg, #7de9ff 0%, #f2f2f2 100%)',
+  },
+  {
+    icon: '/home/delivery-emoji.png',
+    title: 'Delivery in 3 hours',
+    description:
+      'Fast and free delivery in moscow. delivered in 3 hours on the day of order. fast delivery across russia or pickup is also available',
+    gradient: 'linear-gradient(180deg, #e685ff 0%, #f2f2f2 100%)',
+  },
+  {
+    icon: '/home/bank-emoji.png',
+    title: 'Credit purchase',
+    description: 'Get the best credit offer from more than 30 leading banks in the country',
+    gradient: 'linear-gradient(180deg, #ffe685 0%, #f2f2f2 100%)',
+  },
+  {
+    icon: '/home/approval-emoji.png',
+    title: 'Warranty',
+    description: 'All products on our website have a warranty from our store or apple',
+    gradient: 'linear-gradient(180deg, #52d116 0%, #f2f2f2 100%)',
+  },
+]
