@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react'
 
+import { routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui/components/Button'
 import { Link } from '@/shared/ui/components/Link'
@@ -48,14 +49,14 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
       </div>
 
       <Link
-        to={`/product/${product.id}`}
+        to={routes.product(product.id)}
         className="line-clamp-2 w-full text-center font-medium text-2xl text-text-primary transition-colors hover:text-primary"
       >
         {product.title}
       </Link>
 
-      <a
-        href={`/product/${product.id}`}
+      <Link
+        to={routes.product(product.id)}
         data-nav
         className="my-2 flex h-40 items-center justify-center"
       >
@@ -65,7 +66,7 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
           className="max-h-full object-contain"
           loading="lazy"
         />
-      </a>
+      </Link>
 
       <div className="flex w-full flex-row @[16rem]:items-center items-center justify-around @[16rem]:gap-2 gap-0.5 text-base text-text-quinary">
         <div className="flex items-center gap-1">

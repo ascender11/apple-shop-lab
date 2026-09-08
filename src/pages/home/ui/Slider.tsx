@@ -8,6 +8,7 @@ import type { Slide as SlideType } from '../model/types'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
+import { routes } from '@/shared/config'
 
 export const Slider = () => {
   return (
@@ -78,7 +79,7 @@ const Slide = ({ title, specs, image, backgroundColor, color }: SlideType) => {
             ))}
           </ul>
           <Link
-            to="/catalog"
+            to={routes.catalog}
             className="link-button rounded-full px-6 py-2.5 font-semibold text-base outline"
           >
             Learn more
@@ -111,7 +112,7 @@ const Slide = ({ title, specs, image, backgroundColor, color }: SlideType) => {
             ))}
           </ul>
           <Link
-            to="/catalog"
+            to={routes.catalog}
             className="link-button rounded-full px-6 py-2.5 font-semibold text-base outline"
           >
             Learn more

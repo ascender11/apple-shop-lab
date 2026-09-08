@@ -1,3 +1,5 @@
+import { routes } from './routes'
+
 export interface NavLink {
   id: number
   href: string
@@ -5,9 +7,9 @@ export interface NavLink {
 }
 
 export const NAVIGATION_LINKS: NavLink[] = [
-  { id: 1, href: '/', label: 'Home' },
-  { id: 2, href: '/catalog', label: 'Catalog' },
-  { id: 3, href: '/favorites', label: 'Favorites' },
-  { id: 4, href: '/cart', label: 'Cart' },
-  { id: 5, href: '/delivery', label: 'Delivery' },
+  { id: 1, href: routes.home, label: 'Home' },
+  { id: 2, href: routes.catalog, label: 'Catalog' },
+  { id: 3, href: routes.favorites, label: 'Favorites' },
+  { id: 4, href: routes.cart, label: 'Cart' },
+  { id: 5, href: routes.delivery, label: 'Delivery' },
 ]

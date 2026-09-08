@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react'
 
+import { routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Link } from '@/shared/ui/components/Link'
 
@@ -21,7 +22,7 @@ export const Banner = ({ className = '' }: ComponentProps<'section'>) => {
           <h1 className="font-bold text-xl sm:text-3xl lg:text-6xl">iPhone 14 Pro Max</h1>
           <p className="lg:text-2xl">at the best price in Moscow</p>
         </div>
-        <Link to="/product/1" className="link-button w-40">
+        <Link to={routes.product('1')} className="link-button w-40">
           Learn more
         </Link>
       </div>
