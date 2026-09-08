@@ -33,15 +33,38 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
       </nav>
 
       <div className="flex w-full flex-col gap-2.5 sm:gap-5 sm:max-lg:flex-row sm:max-lg:items-center">
-        <p className="font-medium text-2xl">+7 812 704 86 97</p>
+        <a href="tel:+78125619662" className="font-medium text-2xl hover:underline">
+          +7 812 704 86 97
+        </a>
         <div className="flex flex-col text-text-quinary text-xs">
           <p>Free consultation</p>
           <p>From 10:00 to 21:00, daily</p>
         </div>
         <div className="flex gap-2.5">
-          <img src="/footer/telegram-logo.svg" alt="Telegram" className="w-8" />
-          <img src="/footer/vk-logo.svg" alt="VK" className="w-8" />
-          <img src="/footer/watsapp-logo.svg" alt="WhatsApp" className="w-8" />
+          <a
+            href="https://t.me/emptyworrds"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Telegram"
+          >
+            <img src="/footer/telegram-logo.svg" alt="Telegram" className="w-8" />
+          </a>
+          <a
+            href="https://vk.com/emptyworrds"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="VK"
+          >
+            <img src="/footer/vk-logo.svg" alt="VK" className="w-8" />
+          </a>
+          <a
+            href="https://wa.me/78127048697"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+          >
+            <img src="/footer/watsapp-logo.svg" alt="WhatsApp" className="w-8" />
+          </a>
         </div>
       </div>
     </footer>
