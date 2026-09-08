@@ -1,4 +1,7 @@
+export { AddToCartIcon } from './AddToCartIcon'
 export { ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from './ArrowIcon'
 export { BurgerMenuIcon } from './BurgerMenuIcon'
+export { HeartIcon } from './HeartIcon'
 export { Logo } from './Logo'
 export { Phone } from './Phone'
+export { StarIcon } from './StarIcon'
