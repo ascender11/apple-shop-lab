@@ -5,5 +5,4 @@ export const routes = {
   cart: '/cart',
   delivery: '/delivery',
   login: '/login',
-  product: (id: string) => `/product/${id}`,
 }

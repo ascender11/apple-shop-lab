@@ -1,5 +1,6 @@
 export type { Product } from './model/types'
 export { useProduct } from './model/useProduct'
+export { useProductLink } from './model/useProductLink'
 export { useProducts } from './model/useProducts'
 export { ProductCard } from './ui/ProductCard'
 export { ProductList } from './ui/ProductList'

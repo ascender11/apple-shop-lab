@@ -1,24 +1,20 @@
 import type { ComponentProps } from 'react'
-import { useLocation } from 'react-router'
 
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui/components/Button'
 import { Link } from '@/shared/ui/components/Link'
 import { AddToCartIcon, HeartIcon, StarIcon } from '@/shared/ui/icons'
 import type { Product } from '../model/types'
+import { useProductLink } from '../model/useProductLink'
 
 export interface ProductCardProps extends ComponentProps<'div'> {
   product: Product
 }
 
 export const ProductCard = ({ product, className = '', ...rest }: ProductCardProps) => {
-  const location = useLocation()
+  const productLink = useProductLink(product.id)
+
   const isInStock = product.availability === 'in_stock'
-
-  const searchParams = new URLSearchParams(location.search)
-  searchParams.set('product', product.id)
-
-  const productLink = `${location.pathname}?${searchParams.toString()}`
 
   return (
     <div

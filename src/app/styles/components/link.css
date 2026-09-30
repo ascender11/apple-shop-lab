@@ -11,6 +11,10 @@
     @apply px-5 py-2.5 rounded-lg bg-primary text-text-button hover:text-text-button hover:bg-secondary transition-colors duration-200 inline-flex items-center justify-center gap-2 border-0 no-underline;
   }
 
+  .link-button.active {
+    @apply no-underline text-text-button;
+  }
+
   .link-button.outline {
     @apply bg-transparent text-primary border border-primary hover:border-secondary hover:text-secondary;
   }
