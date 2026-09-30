@@ -1,5 +1,3 @@
-import { Footer } from '@/widgets/footer'
-import { Header } from '@/widgets/header'
 import { Advantages } from './Advantages'
 import { Banner } from './Banner'
 import { CtaBanner } from './CtaBanner'
@@ -9,17 +7,13 @@ import { Slider } from './Slider'
 
 export const HomePage = () => {
   return (
-    <>
-      <Header />
-      <main>
-        <Slider />
-        <PopularProducts />
-        <Banner />
-        <NewProducts />
-        <Advantages />
-        <CtaBanner />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Slider />
+      <PopularProducts />
+      <Banner />
+      <NewProducts />
+      <Advantages />
+      <CtaBanner />
+    </main>
   )
 }

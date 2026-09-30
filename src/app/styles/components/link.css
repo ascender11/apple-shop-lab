@@ -1,6 +1,6 @@
 @layer components {
   .link {
-    @apply text-text-primary hover:text-primary transition-colors;
+    @apply no-underline text-text-primary hover:text-primary transition-colors;
   }
 
   .link.active {

@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react'
+import { useLocation } from 'react-router'
 
-import { routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui/components/Button'
 import { Link } from '@/shared/ui/components/Link'
@@ -12,7 +12,13 @@ export interface ProductCardProps extends ComponentProps<'div'> {
 }
 
 export const ProductCard = ({ product, className = '', ...rest }: ProductCardProps) => {
+  const location = useLocation()
   const isInStock = product.availability === 'in_stock'
+
+  const searchParams = new URLSearchParams(location.search)
+  searchParams.set('product', product.id)
+
+  const productLink = `${location.pathname}?${searchParams.toString()}`
 
   return (
     <div
@@ -37,6 +43,7 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
               />
             ))}
           </div>
+
           <span className="text-primary">({product.rating.reviewsCount})</span>
         </div>
 
@@ -49,17 +56,13 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
       </div>
 
       <Link
-        to={routes.product(product.id)}
-        className="line-clamp-2 w-full text-center font-medium text-2xl text-text-primary transition-colors hover:text-primary"
+        to={productLink}
+        className="line-clamp-2 w-full text-center font-medium text-2xl text-text-primary no-underline transition-colors hover:text-primary"
       >
         {product.title}
       </Link>
 
-      <Link
-        to={routes.product(product.id)}
-        data-nav
-        className="my-2 flex h-40 items-center justify-center"
-      >
+      <Link to={productLink} data-nav className="my-2 flex h-40 items-center justify-center">
         <img
           src={product.images[0]}
           alt={product.title}
@@ -75,7 +78,8 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
               'inline-block h-4 w-4 rounded-full',
               isInStock ? 'bg-green-500' : 'bg-red-500'
             )}
-          ></span>
+          />
+
           <span className="@[16rem]:text-base text-sm">
             {isInStock ? 'In stock' : 'Out of stock'}
           </span>
@@ -93,6 +97,7 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
               {product.price.old.toLocaleString()} ₽
             </span>
           )}
+
           <span className="font-medium text-2xl text-text-primary">
             {product.price?.current.toLocaleString()} ₽
           </span>
