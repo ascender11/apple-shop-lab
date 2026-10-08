@@ -3,10 +3,10 @@ import type { ComponentProps } from 'react'
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui/components/Button'
 import { Link } from '@/shared/ui/components/Link'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/components/Tooltip'
 import { AddToCartIcon, HeartIcon, StarIcon } from '@/shared/ui/icons'
 import type { Product } from '../model/types'
 import { useProductLink } from '../model/useProductLink'
-
 export interface ProductCardProps extends ComponentProps<'div'> {
   product: Product
 }
@@ -43,12 +43,18 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
           <span className="text-primary">({product.rating.reviewsCount})</span>
         </div>
 
-        <Button
-          className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100"
-          aria-label="Add to favorites"
-        >
-          <HeartIcon />
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100"
+              aria-label="Add to favorites"
+            >
+              <HeartIcon />
+            </Button>
+          </TooltipTrigger>
+
+          <TooltipContent>Add to favorites</TooltipContent>
+        </Tooltip>
       </div>
 
       <Link
