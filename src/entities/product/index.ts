@@ -1,3 +1,4 @@
+export { productService } from './api/service'
 export type { Product } from './model/types'
 export { useProduct } from './model/useProduct'
 export { useProductLink } from './model/useProductLink'

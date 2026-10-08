@@ -6,7 +6,7 @@ export const Button = ({ children, className = '', ...rest }: ComponentProps<'bu
   return (
     <button
       className={cn(
-        'inline-flex items-center gap-2 rounded-lg px-4 py-2 transition-colors',
+        'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 transition-colors',
         className
       )}
       {...rest}

@@ -1,7 +1,7 @@
 import { ProductList, useProducts } from '@/entities/product'
 
 export const NewProducts = () => {
-  const products = useProducts()
+  const { products } = useProducts()
 
   return (
     <section className="px-6 py-4 sm:px-10 sm:py-6 xl:px-16">

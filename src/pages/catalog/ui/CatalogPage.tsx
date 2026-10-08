@@ -3,7 +3,7 @@ import { FilterPanel, useFilters } from '@/features/product-filter'
 
 export const CatalogPage = () => {
   const { filters, updateFilters, resetFilters } = useFilters()
-  const products = useProducts()
+  const { products } = useProducts()
 
   return (
     <div className="flex min-h-[calc(100vh-56px)]">

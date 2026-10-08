@@ -1,18 +1,32 @@
-import products from '../data/products.json'
+import { api } from '@/shared/api'
 import type { Product } from '../model/types'
 
 export const productService = {
   async getProducts(): Promise<Product[]> {
-    return products as Product[]
+    const { data } = await api.get<Product[]>('/products')
+
+    return data
   },
 
   async getProductById(id: string): Promise<Product> {
-    const product = products.find((product) => product.id === id)
+    const { data } = await api.get<Product>(`/products/${id}`)
 
-    if (!product) {
-      throw new Error('Product not found')
-    }
+    return data
+  },
 
-    return product as Product
+  async createProduct(product: Product): Promise<Product> {
+    const { data } = await api.post<Product>('/products', product)
+
+    return data
+  },
+
+  async updateProduct(product: Product): Promise<Product> {
+    const { data } = await api.put<Product>(`/products/${product.id}`, product)
+
+    return data
+  },
+
+  async deleteProduct(id: string): Promise<void> {
+    await api.delete(`/products/${id}`)
   },
 }

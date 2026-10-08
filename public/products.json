@@ -12,9 +12,10 @@
     },
     "warrantyPeriod": "1 year",
     "price": {
-      "current": 99990
+      "current": 99990,
+      "old": 123000
     },
-    "availability": "in_stock"
+    "availability": "out_of_stock"
   },
   {
     "id": "2",
