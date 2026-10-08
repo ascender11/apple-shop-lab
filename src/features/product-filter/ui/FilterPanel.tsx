@@ -1,4 +1,6 @@
+import { Checkbox } from '@/shared/ui/components/Checkbox'
 import { Dropdown } from '@/shared/ui/components/Dropdown'
+import { RadioGroup, RadioGroupItem } from '@/shared/ui/components/RadioGroup'
 import { CATEGORY_OPTIONS, YEAR_OPTIONS } from '../model/constants'
 import type { FiltersState } from '../model/types'
 import { PriceSlider } from './PriceSlider'
@@ -27,41 +29,52 @@ export const FilterPanel = ({ filters, onChange, onReset }: FilterPanelProps) =>
 
       <Dropdown type="single" title="Category" defaultOpen={filters.categories.length > 0}>
         <div className="flex flex-col gap-1 py-1">
-          {CATEGORY_OPTIONS.map((category) => (
-            <label
-              key={category}
-              className="flex cursor-pointer items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
-            >
-              <input
-                type="checkbox"
-                checked={filters.categories.includes(category)}
-                onChange={() => handleCategoryToggle(category)}
-                className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
-              />
-              {category}
-            </label>
-          ))}
+          {CATEGORY_OPTIONS.map((category) => {
+            const id = `category-${category}`
+
+            return (
+              <div
+                key={category}
+                className="flex items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+              >
+                <Checkbox
+                  id={id}
+                  checked={filters.categories.includes(category)}
+                  onCheckedChange={() => handleCategoryToggle(category)}
+                />
+
+                <label htmlFor={id} className="cursor-pointer">
+                  {category}
+                </label>
+              </div>
+            )
+          })}
         </div>
       </Dropdown>
 
       <Dropdown type="single" title="Year" defaultOpen={filters.year !== ''}>
-        <div className="flex flex-col gap-1 py-1">
-          {YEAR_OPTIONS.map((option) => (
-            <label
-              key={option.value}
-              className="flex cursor-pointer items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
-            >
-              <input
-                type="radio"
-                name="year"
-                checked={filters.year === option.value}
-                onChange={() => onChange({ year: option.value })}
-                className="h-4 w-4 border-gray-300 text-primary focus:ring-2 focus:ring-primary/20"
-              />
-              {option.labelKey}
-            </label>
-          ))}
-        </div>
+        <RadioGroup
+          value={filters.year}
+          onValueChange={(year) => onChange({ year })}
+          className="flex flex-col gap-1 py-1"
+        >
+          {YEAR_OPTIONS.map((option) => {
+            const id = `year-${option.value}`
+
+            return (
+              <div
+                key={option.value}
+                className="flex items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+              >
+                <RadioGroupItem id={id} value={option.value} />
+
+                <label htmlFor={id} className="cursor-pointer">
+                  {option.labelKey}
+                </label>
+              </div>
+            )
+          })}
+        </RadioGroup>
       </Dropdown>
 
       <button
