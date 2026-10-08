@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router'
 
 import { useProduct } from '@/entities/product'
 import { Button } from '@/shared/ui/components/Button'
+import { Separator } from '@/shared/ui/components/Separator'
 import { AddToCartIcon, HeartIcon, StarIcon } from '@/shared/ui/icons'
 
 type ProductModalProps = {
@@ -116,6 +117,8 @@ export const ProductModal = ({ productId }: ProductModalProps) => {
                   <p className="text-sm text-text-quinary">Warranty: {product.warrantyPeriod}</p>
                 )}
               </div>
+
+              <Separator className="mb-8" />
 
               <div className="mt-auto rounded-2xl bg-background-secondary p-6 sm:p-8">
                 {isInStock ? (
