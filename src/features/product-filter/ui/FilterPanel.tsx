@@ -1,5 +1,6 @@
 import { Checkbox } from '@/shared/ui/components/Checkbox'
 import { Dropdown } from '@/shared/ui/components/Dropdown'
+import { Label } from '@/shared/ui/components/Label'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui/components/RadioGroup'
 import { CATEGORY_OPTIONS, YEAR_OPTIONS } from '../model/constants'
 import type { FiltersState } from '../model/types'
@@ -35,7 +36,7 @@ export const FilterPanel = ({ filters, onChange, onReset }: FilterPanelProps) =>
             return (
               <div
                 key={category}
-                className="flex items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
+                className="flex items-center gap-2.5 px-1 py-1.5 transition-colors hover:text-text-primary"
               >
                 <Checkbox
                   id={id}
@@ -43,9 +44,9 @@ export const FilterPanel = ({ filters, onChange, onReset }: FilterPanelProps) =>
                   onCheckedChange={() => handleCategoryToggle(category)}
                 />
 
-                <label htmlFor={id} className="cursor-pointer">
+                <Label htmlFor={id} className="cursor-pointer">
                   {category}
-                </label>
+                </Label>
               </div>
             )
           })}
@@ -62,15 +63,12 @@ export const FilterPanel = ({ filters, onChange, onReset }: FilterPanelProps) =>
             const id = `year-${option.value}`
 
             return (
-              <div
-                key={option.value}
-                className="flex items-center gap-2.5 px-1 py-1.5 text-sm text-text-secondary transition-colors hover:text-text-primary"
-              >
+              <div key={option.value} className="flex items-center gap-2.5 px-1 py-1.5">
                 <RadioGroupItem id={id} value={option.value} />
 
-                <label htmlFor={id} className="cursor-pointer">
+                <Label htmlFor={id} className="cursor-pointer">
                   {option.labelKey}
-                </label>
+                </Label>
               </div>
             )
           })}
