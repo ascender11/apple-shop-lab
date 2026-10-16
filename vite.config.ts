@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     open: true,
     watch: {
-      ignored: ['**/public/products.json'],
+      ignored: ['**/public/database/**'],
     },
   },
 })

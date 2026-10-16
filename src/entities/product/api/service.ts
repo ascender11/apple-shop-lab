@@ -1,5 +1,5 @@
 import { api } from '@/shared/api'
-import type { Product } from '../model/types'
+import type { FiltersState, Product } from '../model/types'
 
 export const productService = {
   async getProducts(): Promise<Product[]> {
@@ -12,6 +12,22 @@ export const productService = {
     const { data } = await api.get<Product>(`/products/${id}`)
 
     return data
+  },
+
+  async getFilteredProducts(filters: FiltersState): Promise<Product[]> {
+    const products = await this.getProducts()
+
+    return products
+      .filter((product) => {
+        const price = product.price?.current
+
+        return price !== undefined && price >= filters.priceMin && price <= filters.priceMax
+      })
+      .filter(
+        (product) =>
+          filters.categories.length === 0 || filters.categories.includes(product.category)
+      )
+      .filter((product) => filters.year === '' || String(product.year) === filters.year)
   },
 
   async createProduct(product: Product): Promise<Product> {

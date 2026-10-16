@@ -1,10 +1,11 @@
 [
   {
     "id": "1",
-    "title": "Apple iPad Pro 11\" (M4) 256 ГБ Space Black",
+    "title": "Apple iPad Pro 11\" (M4) 256 ГБ Space Black ",
     "images": [
       "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-pro-glass-select-gallery-2-202405?wid=5120&hei=2880&fmt=webp&qlt=90&.v=QU8rTGFZUkxWbm1Fc0VaUXQ2QVNpR0pvMjZnN3E5aGRZVXJIWmhFMitJSU9WV3R2ZHdZMXRzTjZIcWdMTlg4eUJQYkhSV3V1dC9oa0s5K3lqMGtUaGVKZVh6REdCb3NhUkU0K1Z6WFRtbCtXQm92T1BGMVFqb0UvQ214cjlZaHg&traceId=1"
     ],
+    "year": "2024",
     "category": "iPad",
     "rating": {
       "score": 4.7,
@@ -12,7 +13,7 @@
     },
     "warrantyPeriod": "1 year",
     "price": {
-      "current": 99990,
+      "current": 300000,
       "old": 123000
     },
     "availability": "out_of_stock"
@@ -23,6 +24,7 @@
     "images": [
       "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/ipad-pro-glass-select-gallery-2-202405?wid=5120&hei=2880&fmt=webp&qlt=90&.v=QU8rTGFZUkxWbm1Fc0VaUXQ2QVNpR0pvMjZnN3E5aGRZVXJIWmhFMitJSU9WV3R2ZHdZMXRzTjZIcWdMTlg4eUJQYkhSV3V1dC9oa0s5K3lqMGtUaGVKZVh6REdCb3NhUkU0K1Z6WFRtbCtXQm92T1BGMVFqb0UvQ214cjlZaHg&traceId=1"
     ],
+    "year": "2024",
     "category": "iPad",
     "rating": {
       "score": 4.7,

@@ -1,9 +1,9 @@
-import { ProductList, useProducts } from '@/entities/product'
-import { FilterPanel, useFilters } from '@/features/product-filter'
+import { ProductList } from '@/entities/product'
+import { FilterPanel, useFilteredProducts, useFilters } from '@/features/product/filter'
 
 export const CatalogPage = () => {
   const { filters, updateFilters, resetFilters } = useFilters()
-  const { products } = useProducts()
+  const { products, isLoading, error } = useFilteredProducts(filters)
 
   return (
     <div className="flex min-h-[calc(100vh-56px)]">
@@ -12,7 +12,13 @@ export const CatalogPage = () => {
       </aside>
 
       <main className="flex-1 px-4 py-6 sm:px-6 lg:pr-30">
-        <ProductList products={products} />
+        {isLoading ? (
+          <p>Loading products...</p>
+        ) : error ? (
+          <p role="alert">{error.message}</p>
+        ) : (
+          <ProductList products={products} />
+        )}
       </main>
     </div>
   )

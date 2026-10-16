@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react'
 import { useSearchParams } from 'react-router'
 
+import type { FiltersState } from '@/entities/product'
 import { DEFAULT_FILTERS } from './constants'
 import { parseFilters, serializeFilters } from './filters'
-import type { FiltersState } from './types'
 
 export const useFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams()

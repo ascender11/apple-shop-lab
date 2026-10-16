@@ -1,6 +1,6 @@
 export { productService } from './api/service'
 export { useProductStore } from './model/store'
-export type { Product } from './model/types'
+export type { FiltersState, Product } from './model/types'
 export { useProduct } from './model/useProduct'
 export { useProductLink } from './model/useProductLink'
 export { useProducts } from './model/useProducts'

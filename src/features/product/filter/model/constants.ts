@@ -1,4 +1,4 @@
-import type { FiltersState } from './types'
+import type { FiltersState } from '@/entities/product'
 
 export const PRICE_ABS_MIN = 0
 export const PRICE_ABS_MAX = 300000

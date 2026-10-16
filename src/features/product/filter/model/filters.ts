@@ -1,5 +1,5 @@
+import type { FiltersState } from '@/entities/product'
 import { DEFAULT_FILTERS } from './constants'
-import type { FiltersState } from './types'
 
 const getNumberParam = (params: URLSearchParams, key: string, fallback: number): number => {
   const value = params.get(key)

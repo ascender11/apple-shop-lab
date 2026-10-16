@@ -6,7 +6,7 @@ import type { Plugin } from 'vite'
 
 import type { Product } from '../src/entities/product/model/types.ts'
 
-const PRODUCTS_FILE = path.resolve(process.cwd(), 'public/products.json')
+const PRODUCTS_FILE = path.resolve(process.cwd(), 'public/database/products.json')
 
 const readProducts = async (): Promise<Product[]> => {
   const file = await fs.readFile(PRODUCTS_FILE, 'utf-8')

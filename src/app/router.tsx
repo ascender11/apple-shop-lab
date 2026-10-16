@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router'
 
 import { AdminPage } from '@/pages/admin'
-import { CatalogPage } from '@/pages/catalog/ui/CatalogPage'
+import { CatalogPage } from '@/pages/catalog'
 import { HomePage } from '@/pages/home'
 import { NotFoundPage } from '@/pages/not-found'
 import { routes } from '@/shared/config'

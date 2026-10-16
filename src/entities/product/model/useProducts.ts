@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 
-import { productService } from '../api/service'
-import type { Product } from './types'
+import { useProductStore } from './store'
 
 export const useProducts = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const products = useProductStore((state) => state.products)
+  const fetchProducts = useProductStore((state) => state.fetchProducts)
+
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
@@ -13,24 +14,17 @@ export const useProducts = () => {
       setIsLoading(true)
       setError(null)
 
-      const data = await productService.getProducts()
-
-      setProducts(data)
+      await fetchProducts()
     } catch (error) {
       setError(error instanceof Error ? error : new Error('Failed to load products'))
     } finally {
       setIsLoading(false)
     }
-  }, [])
+  }, [fetchProducts])
 
   useEffect(() => {
-    reload()
+    void reload()
   }, [reload])
 
-  return {
-    products,
-    isLoading,
-    error,
-    reload,
-  }
+  return { products, isLoading, error, reload }
 }

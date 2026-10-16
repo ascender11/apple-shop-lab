@@ -1,9 +1,9 @@
+import type { FiltersState } from '@/entities/product'
 import { Checkbox } from '@/shared/ui/components/Checkbox'
 import { Dropdown } from '@/shared/ui/components/Dropdown'
 import { Label } from '@/shared/ui/components/Label'
 import { RadioGroup, RadioGroupItem } from '@/shared/ui/components/RadioGroup'
 import { CATEGORY_OPTIONS, YEAR_OPTIONS } from '../model/constants'
-import type { FiltersState } from '../model/types'
 import { PriceSlider } from './PriceSlider'
 
 interface FilterPanelProps {

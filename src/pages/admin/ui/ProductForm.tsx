@@ -27,6 +27,7 @@ const createEmptyProduct = (): Product => ({
     score: 0,
     reviewsCount: 0,
   },
+  year: '',
   warrantyPeriod: '',
   price: {
     current: 0,
