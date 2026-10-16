@@ -5,10 +5,11 @@ import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
 import { productsApi } from './vite/productsApi.ts'
+import { usersApi } from './vite/usersApi.ts'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [tailwindcss(), react(), productsApi()],
+  plugins: [tailwindcss(), react(), productsApi(), usersApi()],
   resolve: {
     alias: {
       '@': resolve(import.meta.dirname, './src'),
