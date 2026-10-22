@@ -98,5 +98,28 @@
     "disclaimer": "*This website is not a public offer. All information provided on the site is for informational purposes only.",
     "consultation": "Free consultation",
     "workingHours": "Daily, from 10:00 AM to 9:00 PM"
+  },
+  "catalog": {
+    "loading": "Loading products...",
+    "filters": {
+      "price": "Price",
+      "minPrice": "Minimum price",
+      "maxPrice": "Maximum price",
+      "from": "From",
+      "to": "To",
+      "category": "Category",
+      "year": "Year",
+      "allYears": "All",
+      "reset": "Reset filters",
+      "categories": {
+        "iphone": "iPhone",
+        "ipad": "iPad",
+        "appleWatch": "Apple Watch",
+        "mac": "Mac",
+        "airPods": "AirPods",
+        "appleTV": "Apple TV",
+        "accessory": "Accessory"
+      }
+    }
   }
 }

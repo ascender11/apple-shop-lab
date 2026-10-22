@@ -1,5 +1,6 @@
 import * as Slider from '@radix-ui/react-slider'
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { PRICE_ABS_MAX, PRICE_ABS_MIN } from '../model/constants'
 
@@ -19,6 +20,7 @@ const parseInput = (raw: string): number | null => {
 const COMMIT_DEBOUNCE_MS = 400
 
 export const PriceSlider = ({ value, onChange }: PriceSliderProps) => {
+  const { t } = useTranslation()
   const [localValue, setLocalValue] = useState<[number, number]>(value)
   const [minStr, setMinStr] = useState(String(value[0]))
   const [maxStr, setMaxStr] = useState(String(value[1]))
@@ -102,7 +104,7 @@ export const PriceSlider = ({ value, onChange }: PriceSliderProps) => {
 
   return (
     <div className="py-4">
-      <p className="mb-4 font-semibold text-sm text-text-primary">Price</p>
+      <p className="mb-4 font-semibold text-sm text-text-primary">{t('catalog.filters.price')}</p>
 
       <div className="mb-5">
         <Slider.Root
@@ -120,19 +122,19 @@ export const PriceSlider = ({ value, onChange }: PriceSliderProps) => {
 
           <Slider.Thumb
             className="block h-5 w-5 rounded-full border-2 border-primary bg-white shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            aria-label="Min price"
+            aria-label={t('catalog.filters.minPrice')}
           />
 
           <Slider.Thumb
             className="block h-5 w-5 rounded-full border-2 border-primary bg-white shadow-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            aria-label="Max price"
+            aria-label={t('catalog.filters.maxPrice')}
           />
         </Slider.Root>
       </div>
 
       <div className="flex gap-2">
         <div className="flex flex-1 items-center gap-1 rounded-lg border border-border px-3 py-2">
-          <span className="shrink-0 text-text-quinary text-xs">From</span>
+          <span className="shrink-0 text-text-quinary text-xs">{t('catalog.filters.from')}</span>
           <input
             type="number"
             value={minStr}
@@ -147,7 +149,7 @@ export const PriceSlider = ({ value, onChange }: PriceSliderProps) => {
         </div>
 
         <div className="flex flex-1 items-center gap-1 rounded-lg border border-border px-3 py-2">
-          <span className="shrink-0 text-text-quinary text-xs">To</span>
+          <span className="shrink-0 text-text-quinary text-xs">{t('catalog.filters.to')}</span>
           <input
             type="number"
             value={maxStr}

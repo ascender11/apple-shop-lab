@@ -1,7 +1,10 @@
+import { useTranslation } from 'react-i18next'
+
 import { ProductList } from '@/entities/product'
 import { FilterPanel, useFilteredProducts, useFilters } from '@/features/product/filter'
 
 export const CatalogPage = () => {
+  const { t } = useTranslation()
   const { filters, updateFilters, resetFilters } = useFilters()
   const { products, isLoading, error } = useFilteredProducts(filters)
 
@@ -13,7 +16,7 @@ export const CatalogPage = () => {
 
       <main className="flex-1 px-4 py-6 sm:px-6 lg:pr-30">
         {isLoading ? (
-          <p>Loading products...</p>
+          <p>{t('catalog.loading')}</p>
         ) : error ? (
           <p role="alert">{error.message}</p>
         ) : (

@@ -11,13 +11,13 @@ export const DEFAULT_FILTERS: FiltersState = {
 }
 
 export const CATEGORY_OPTIONS = [
-  'iPhone',
-  'iPad',
-  'Apple Watch',
-  'Mac',
-  'AirPods',
-  'Apple TV',
-  'Accessory',
+  { value: 'iPhone', translationKey: 'iphone' },
+  { value: 'iPad', translationKey: 'ipad' },
+  { value: 'Apple Watch', translationKey: 'appleWatch' },
+  { value: 'Mac', translationKey: 'mac' },
+  { value: 'AirPods', translationKey: 'airPods' },
+  { value: 'Apple TV', translationKey: 'appleTV' },
+  { value: 'Accessory', translationKey: 'accessory' },
 ] as const
 
 export const YEAR_OPTIONS = [

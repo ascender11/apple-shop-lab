@@ -114,5 +114,28 @@
     "disclaimer": "*Этот сайт не является публичной офертой. Вся информация на сайте носит исключительно информационный характер.",
     "consultation": "Бесплатная консультация",
     "workingHours": "Ежедневно с 10:00 до 21:00"
+  },
+  "catalog": {
+    "loading": "Загрузка товаров...",
+    "filters": {
+      "price": "Цена",
+      "minPrice": "Минимальная цена",
+      "maxPrice": "Максимальная цена",
+      "from": "От",
+      "to": "До",
+      "category": "Категория",
+      "year": "Год",
+      "allYears": "Все",
+      "reset": "Сбросить фильтры",
+      "categories": {
+        "iphone": "iPhone",
+        "ipad": "iPad",
+        "appleWatch": "Apple Watch",
+        "mac": "Mac",
+        "airPods": "AirPods",
+        "appleTV": "Apple TV",
+        "accessory": "Аксессуары"
+      }
+    }
   }
 }
