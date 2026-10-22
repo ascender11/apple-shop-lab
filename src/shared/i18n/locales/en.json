@@ -157,5 +157,48 @@
         "failed": "Registration failed"
       }
     }
+  },
+  "admin": {
+    "products": {
+      "title": "Product management",
+      "loading": "Loading...",
+      "retry": "Retry",
+      "addProduct": "Add product",
+      "empty": "No products found.",
+      "saving": "Saving changes...",
+      "deleting": "Deleting product...",
+      "errors": {
+        "load": "Failed to load products"
+      }
+    },
+    "productItem": {
+      "noImage": "No image",
+      "inStock": "In stock",
+      "outOfStock": "Out of stock",
+      "reviews": "Reviews: {{count}}",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "productForm": {
+      "editTitle": "Edit product",
+      "addTitle": "Add product",
+      "editDescription": "Update the product information.",
+      "addDescription": "Add a new product to the catalog.",
+      "title": "Title",
+      "titlePlaceholder": "Product title",
+      "category": "Category",
+      "categoryPlaceholder": "Product category",
+      "currentPrice": "Current price",
+      "oldPrice": "Old price",
+      "availability": "Availability",
+      "warrantyPeriod": "Warranty period",
+      "warrantyPlaceholder": "For example: 1 year",
+      "images": "Images",
+      "imagesDescription": "Add one image URL per line.",
+      "imagesPlaceholder": "https://example.com/image-1.jpg\nhttps://example.com/image-2.jpg",
+      "cancel": "Cancel",
+      "saveChanges": "Save changes",
+      "addProduct": "Add product"
+    }
   }
 }

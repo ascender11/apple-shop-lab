@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import type { Product } from '@/entities/product'
 import { ProductForm } from './ProductForm'
 
@@ -18,6 +20,8 @@ export const ProductItem = ({
   onSubmit,
   onDelete,
 }: ProductItemProps) => {
+  const { t } = useTranslation()
+
   if (isEditing) {
     return <ProductForm product={product} onSubmit={onSubmit} onCancel={onCancelEdit} />
   }
@@ -33,7 +37,7 @@ export const ProductItem = ({
               className="h-full w-full object-contain"
             />
           ) : (
-            <span className="text-sm text-text-secondary">No image</span>
+            <span className="text-sm text-text-secondary">{t('admin.productItem.noImage')}</span>
           )}
         </div>
 
@@ -50,7 +54,9 @@ export const ProductItem = ({
                   : 'rounded-md bg-red-500/10 px-2 py-1 font-medium text-red-500 text-xs'
               }
             >
-              {product.availability === 'in_stock' ? 'In stock' : 'Out of stock'}
+              {product.availability === 'in_stock'
+                ? t('admin.productItem.inStock')
+                : t('admin.productItem.outOfStock')}
             </span>
           </div>
 
@@ -70,10 +76,12 @@ export const ProductItem = ({
 
               <div className="mt-1 flex items-center gap-2 text-sm text-text-secondary">
                 <span>★ {product.rating.score.toFixed(1)}</span>
-
                 <span>•</span>
-
-                <span>{product.rating.reviewsCount} reviews</span>
+                <span>
+                  {t('admin.productItem.reviews', {
+                    count: product.rating.reviewsCount,
+                  })}
+                </span>
               </div>
             </div>
 
@@ -83,7 +91,7 @@ export const ProductItem = ({
                 onClick={onEdit}
                 className="rounded-lg border border-border px-4 py-2 font-medium text-sm transition-colors hover:bg-background-tertiary"
               >
-                Edit
+                {t('admin.productItem.edit')}
               </button>
 
               <button
@@ -91,7 +99,7 @@ export const ProductItem = ({
                 onClick={() => onDelete(product.id)}
                 className="rounded-lg border border-red-500/30 px-4 py-2 font-medium text-red-500 text-sm transition-colors hover:bg-red-500/10"
               >
-                Delete
+                {t('admin.productItem.delete')}
               </button>
             </div>
           </div>

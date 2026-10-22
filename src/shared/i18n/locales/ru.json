@@ -173,5 +173,48 @@
         "failed": "Не удалось зарегистрироваться"
       }
     }
+  },
+  "admin": {
+    "products": {
+      "title": "Управление товарами",
+      "loading": "Загрузка...",
+      "retry": "Повторить",
+      "addProduct": "Добавить товар",
+      "empty": "Товары не найдены.",
+      "saving": "Сохранение изменений...",
+      "deleting": "Удаление товара...",
+      "errors": {
+        "load": "Не удалось загрузить товары"
+      }
+    },
+    "productItem": {
+      "noImage": "Нет изображения",
+      "inStock": "В наличии",
+      "outOfStock": "Нет в наличии",
+      "reviews": "Отзывы: {{count}}",
+      "edit": "Редактировать",
+      "delete": "Удалить"
+    },
+    "productForm": {
+      "editTitle": "Редактировать товар",
+      "addTitle": "Добавить товар",
+      "editDescription": "Обновите информацию о товаре.",
+      "addDescription": "Добавьте новый товар в каталог.",
+      "title": "Название",
+      "titlePlaceholder": "Название товара",
+      "category": "Категория",
+      "categoryPlaceholder": "Категория товара",
+      "currentPrice": "Текущая цена",
+      "oldPrice": "Старая цена",
+      "availability": "Наличие",
+      "warrantyPeriod": "Гарантийный срок",
+      "warrantyPlaceholder": "Например: 1 год",
+      "images": "Изображения",
+      "imagesDescription": "Добавьте URL каждого изображения с новой строки.",
+      "imagesPlaceholder": "https://example.com/image-1.jpg\nhttps://example.com/image-2.jpg",
+      "cancel": "Отмена",
+      "saveChanges": "Сохранить изменения",
+      "addProduct": "Добавить товар"
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { type Product, useProductStore } from '@/entities/product'
 import { useAddProduct } from '@/features/product/add'
@@ -8,13 +9,12 @@ import { ProductForm } from './ProductForm'
 import { ProductItem } from './ProductItem'
 
 export const AdminPage = () => {
+  const { t } = useTranslation()
   const products = useProductStore((state) => state.products)
   const fetchProducts = useProductStore((state) => state.fetchProducts)
 
   const { addProduct, isLoading: isAdding, error: addError } = useAddProduct()
-
   const { editProduct, isLoading: isEditing, error: editError } = useEditProduct()
-
   const { deleteProduct, isLoading: isDeleting, error: deleteError } = useDeleteProduct()
 
   const [isLoading, setIsLoading] = useState(true)
@@ -28,14 +28,14 @@ export const AdminPage = () => {
         setLoadError(null)
         await fetchProducts()
       } catch (error) {
-        setLoadError(error instanceof Error ? error.message : 'Failed to load products')
+        setLoadError(error instanceof Error ? error.message : t('admin.products.errors.load'))
       } finally {
         setIsLoading(false)
       }
     }
 
     void loadProducts()
-  }, [fetchProducts])
+  }, [fetchProducts, t])
 
   const handleCreate = async (product: Product) => {
     try {
@@ -66,7 +66,7 @@ export const AdminPage = () => {
   const operationError = addError ?? editError ?? deleteError
 
   if (isLoading) {
-    return <div className="container mx-auto px-4 py-8">Loading...</div>
+    return <div className="container mx-auto px-4 py-8">{t('admin.products.loading')}</div>
   }
 
   if (loadError) {
@@ -75,6 +75,7 @@ export const AdminPage = () => {
         <p role="alert" className="text-red-500">
           {loadError}
         </p>
+
         <button
           type="button"
           onClick={() => {
@@ -83,13 +84,15 @@ export const AdminPage = () => {
 
             void fetchProducts()
               .catch((error: unknown) => {
-                setLoadError(error instanceof Error ? error.message : 'Failed to load products')
+                setLoadError(
+                  error instanceof Error ? error.message : t('admin.products.errors.load')
+                )
               })
               .finally(() => setIsLoading(false))
           }}
           className="mt-4 rounded-lg bg-primary px-4 py-2 text-white"
         >
-          Retry
+          {t('admin.products.retry')}
         </button>
       </main>
     )
@@ -98,7 +101,7 @@ export const AdminPage = () => {
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="mb-8 flex items-center justify-between gap-4">
-        <h1 className="font-semibold text-2xl">Product management</h1>
+        <h1 className="font-semibold text-2xl">{t('admin.products.title')}</h1>
 
         <button
           type="button"
@@ -106,7 +109,7 @@ export const AdminPage = () => {
           disabled={isCreating || isAdding}
           className="rounded-lg bg-primary px-4 py-2 text-white disabled:opacity-50"
         >
-          Add product
+          {t('admin.products.addProduct')}
         </button>
       </div>
 
@@ -123,7 +126,7 @@ export const AdminPage = () => {
       )}
 
       {products.length === 0 ? (
-        <p className="text-text-secondary">No products found.</p>
+        <p className="text-text-secondary">{t('admin.products.empty')}</p>
       ) : (
         <div className="flex flex-col gap-4">
           {products.map((product) => (
@@ -142,7 +145,7 @@ export const AdminPage = () => {
 
       {(isEditing || isDeleting) && (
         <p className="mt-4 text-sm text-text-secondary" role="status">
-          {isEditing ? 'Saving changes...' : 'Deleting product...'}
+          {isEditing ? t('admin.products.saving') : t('admin.products.deleting')}
         </p>
       )}
     </main>

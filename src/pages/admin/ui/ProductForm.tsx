@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import type { Product } from '@/entities/product'
 import { Label } from '@/shared/ui/components/Label'
@@ -36,6 +37,7 @@ const createEmptyProduct = (): Product => ({
 })
 
 export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) => {
+  const { t } = useTranslation()
   const [form, setForm] = useState<Product>(product ?? createEmptyProduct())
   const [images, setImages] = useState(product?.images.join('\n') ?? '')
 
@@ -69,10 +71,12 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
       className="rounded-xl border border-border bg-background-secondary p-6"
     >
       <div className="mb-6">
-        <h2 className="font-semibold text-xl">{product ? 'Edit product' : 'Add product'}</h2>
+        <h2 className="font-semibold text-xl">
+          {product ? t('admin.productForm.editTitle') : t('admin.productForm.addTitle')}
+        </h2>
 
         <p className="mt-1 text-sm text-text-secondary">
-          {product ? 'Update the product information.' : 'Add a new product to the catalog.'}
+          {product ? t('admin.productForm.editDescription') : t('admin.productForm.addDescription')}
         </p>
       </div>
 
@@ -80,26 +84,26 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
 
       <div className="grid gap-5">
         <div className="flex flex-col gap-2">
-          <Label htmlFor="product-title">Title</Label>
+          <Label htmlFor="product-title">{t('admin.productForm.title')}</Label>
 
           <input
             id="product-title"
             value={form.title}
             onChange={(event) => updateField('title', event.target.value)}
-            placeholder="Product title"
+            placeholder={t('admin.productForm.titlePlaceholder')}
             className="rounded-lg border border-border bg-background px-3 py-2.5 outline-none transition-colors placeholder:text-text-secondary focus:border-primary"
             required
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="product-category">Category</Label>
+          <Label htmlFor="product-category">{t('admin.productForm.category')}</Label>
 
           <input
             id="product-category"
             value={form.category}
             onChange={(event) => updateField('category', event.target.value)}
-            placeholder="Product category"
+            placeholder={t('admin.productForm.categoryPlaceholder')}
             className="rounded-lg border border-border bg-background px-3 py-2.5 outline-none transition-colors placeholder:text-text-secondary focus:border-primary"
             required
           />
@@ -107,7 +111,7 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
 
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="flex flex-col gap-2">
-            <Label htmlFor="product-price">Current price</Label>
+            <Label htmlFor="product-price">{t('admin.productForm.currentPrice')}</Label>
 
             <input
               id="product-price"
@@ -130,7 +134,7 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
           </div>
 
           <div className="flex flex-col gap-2">
-            <Label htmlFor="product-old-price">Old price</Label>
+            <Label htmlFor="product-old-price">{t('admin.productForm.oldPrice')}</Label>
 
             <input
               id="product-old-price"
@@ -153,7 +157,7 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="product-availability">Availability</Label>
+          <Label htmlFor="product-availability">{t('admin.productForm.availability')}</Label>
 
           <Select
             value={form.availability}
@@ -164,35 +168,37 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
             </SelectTrigger>
 
             <SelectContent>
-              <SelectItem value="in_stock">In stock</SelectItem>
-              <SelectItem value="out_of_stock">Out of stock</SelectItem>
+              <SelectItem value="in_stock">{t('admin.productItem.inStock')}</SelectItem>
+              <SelectItem value="out_of_stock">{t('admin.productItem.outOfStock')}</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="product-warranty">Warranty period</Label>
+          <Label htmlFor="product-warranty">{t('admin.productForm.warrantyPeriod')}</Label>
 
           <input
             id="product-warranty"
             value={form.warrantyPeriod}
             onChange={(event) => updateField('warrantyPeriod', event.target.value)}
-            placeholder="For example: 1 year"
+            placeholder={t('admin.productForm.warrantyPlaceholder')}
             className="rounded-lg border border-border bg-background px-3 py-2.5 outline-none transition-colors placeholder:text-text-secondary focus:border-primary"
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <Label htmlFor="product-images">Images</Label>
+          <Label htmlFor="product-images">{t('admin.productForm.images')}</Label>
 
-          <span className="text-text-secondary text-xs">Add one image URL per line.</span>
+          <span className="text-text-secondary text-xs">
+            {t('admin.productForm.imagesDescription')}
+          </span>
 
           <textarea
             id="product-images"
             value={images}
             onChange={(event) => setImages(event.target.value)}
             rows={5}
-            placeholder={'https://example.com/image-1.jpg\nhttps://example.com/image-2.jpg'}
+            placeholder={t('admin.productForm.imagesPlaceholder')}
             className="resize-y rounded-lg border border-border bg-background px-3 py-2.5 outline-none transition-colors placeholder:text-text-secondary"
           />
         </div>
@@ -206,14 +212,14 @@ export const ProductForm = ({ product, onSubmit, onCancel }: ProductFormProps) =
           onClick={onCancel}
           className="rounded-lg border border-border px-4 py-2.5 font-medium text-sm transition-colors hover:bg-background-tertiary"
         >
-          Cancel
+          {t('admin.productForm.cancel')}
         </button>
 
         <button
           type="submit"
           className="rounded-lg bg-primary px-4 py-2.5 font-medium text-sm text-white transition-opacity hover:opacity-90"
         >
-          {product ? 'Save changes' : 'Add product'}
+          {product ? t('admin.productForm.saveChanges') : t('admin.productForm.addProduct')}
         </button>
       </div>
     </form>
