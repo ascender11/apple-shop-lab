@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "9d509be5-7be9-4fdd-8d9a-1b0cb537841f",
+    "phone": "+375333086376",
+    "email": "ascenderr11@gmail.com",
+    "fullName": {
+      "firstName": "Павел",
+      "lastName": "Цыкунов",
+      "patronymic": "Иванович"
+    },
+    "nickname": "SomeNickname",
+    "birthDate": "2007-04-02",
+    "password": "mypassword",
+    "role": "ADMIN",
+    "createdAt": "2026-10-16T12:12:46.518Z"
+  }
+]

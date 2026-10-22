@@ -1,15 +1,30 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
-import { NAVIGATION_LINKS } from '@/shared/config'
+import { useUserStore } from '@/entities/user'
+import { NAVIGATION_LINKS, routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Link } from '@/shared/ui/components/Link'
-import { BurgerMenuIcon, Logo, Phone } from '@/shared/ui/icons'
+import { BurgerMenuIcon, LoginIcon, Logo, LogoutIcon, Phone } from '@/shared/ui/icons'
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const user = useUserStore((state) => state.user)
+  const logout = useUserStore((state) => state.logout)
+  const navigate = useNavigate()
+
+  const navigationLinks = NAVIGATION_LINKS.filter(
+    (link) => link.href !== routes.admin || user?.role === 'ADMIN'
+  )
 
   const toggleMenu = () => setIsMenuOpen((prev) => !prev)
   const closeMenu = () => setIsMenuOpen(false)
+
+  const handleLogout = () => {
+    logout()
+    closeMenu()
+    navigate(routes.auth.login)
+  }
 
   return (
     <header className="relative">
@@ -22,7 +37,7 @@ export const Header = () => {
 
         <nav className="flex items-center">
           <ul className="hidden flex-row gap-7.5 lg:flex">
-            {NAVIGATION_LINKS.map((link) => (
+            {navigationLinks.map((link) => (
               <li key={link.id}>
                 <Link to={link.href}>{link.label}</Link>
               </li>
@@ -38,6 +53,20 @@ export const Header = () => {
             </a>
           </div>
 
+          {user ? (
+            <button type="button" onClick={handleLogout} aria-label="Выйти" title="Выйти">
+              <LogoutIcon />
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => navigate(routes.auth.login)}
+              aria-label="Войти"
+              title="Войти"
+            >
+              <LoginIcon />
+            </button>
+          )}
           <button
             type="button"
             className="h-6 w-6 focus:outline-none lg:hidden"
@@ -56,6 +85,7 @@ export const Header = () => {
         )}
         type="button"
         onClick={closeMenu}
+        aria-label="Close menu"
       />
 
       <nav
@@ -65,13 +95,21 @@ export const Header = () => {
         )}
       >
         <ul className="flex flex-col gap-1.5 p-6">
-          {NAVIGATION_LINKS.map((link) => (
+          {navigationLinks.map((link) => (
             <li key={link.id}>
               <Link to={link.href} onClick={closeMenu}>
                 {link.label}
               </Link>
             </li>
           ))}
+          {user && (
+            <li>
+              <button type="button" onClick={handleLogout} className="flex items-center gap-2 py-2">
+                <LogoutIcon />
+                Выйти
+              </button>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

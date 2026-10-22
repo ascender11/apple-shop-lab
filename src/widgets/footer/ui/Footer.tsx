@@ -1,10 +1,18 @@
 import type { ComponentProps } from 'react'
 
-import { NAVIGATION_LINKS } from '@/shared/config'
+import { USER_ROLES, useUserStore } from '@/entities/user'
+import { NAVIGATION_LINKS, routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Link } from '@/shared/ui/components/Link'
 
+const getNavigationLinks = (isAdmin: boolean) =>
+  NAVIGATION_LINKS.filter((link) => link.href !== routes.admin || isAdmin)
+
 export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) => {
+  const user = useUserStore((state) => state.user)
+
+  const navigationLinks = getNavigationLinks(user?.role === USER_ROLES.ADMIN)
+
   return (
     <footer className={cn('flex flex-col gap-5 p-4 lg:flex-row', className)} {...rest}>
       <div className="flex w-full flex-col gap-2.5">
@@ -24,7 +32,7 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
 
       <nav className="w-full">
         <ul className="flex flex-col gap-3.75">
-          {NAVIGATION_LINKS.map((link) => (
+          {navigationLinks.map((link) => (
             <li key={link.href}>
               <Link to={link.href}>{link.label}</Link>
             </li>

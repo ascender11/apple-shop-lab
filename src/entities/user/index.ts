@@ -1,5 +1,7 @@
 export { userService } from './api/service'
+export { useUserStore } from './model/store'
 export type {
+  LoginData,
   PublicUser,
   RegisterData,
   User,

@@ -23,6 +23,11 @@ export interface User {
 
 export type PublicUser = Omit<User, 'password'>
 
+export interface LoginData {
+  email: string
+  password: string
+}
+
 export interface RegisterData {
   phone: string
   email: string

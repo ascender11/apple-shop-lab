@@ -10,6 +10,11 @@ import { USER_ROLES } from '../src/entities/user/model/types.ts'
 
 const USERS_FILE = path.resolve(process.cwd(), 'public/database/users.json')
 
+type LoginData = {
+  email?: string
+  password?: string
+}
+
 const readUsers = async (): Promise<User[]> => {
   const content = await fs.readFile(USERS_FILE, 'utf-8')
   return JSON.parse(content) as User[]
@@ -44,7 +49,7 @@ export const usersApi = (): Plugin => ({
     server.middlewares.use(async (request, response, next) => {
       const url = new URL(request.url ?? '/', 'http://localhost')
 
-      if (url.pathname !== '/api/users') {
+      if (url.pathname !== '/api/users' && url.pathname !== '/api/users/login') {
         next()
         return
       }
@@ -55,13 +60,49 @@ export const usersApi = (): Plugin => ({
       }
 
       try {
-        const data = (await readBody(request)) as RegisterData
+        const data = await readBody(request)
 
-        const email = data.email?.trim().toLowerCase()
-        const phone = data.phone?.trim()
-        const nickname = data.nickname?.trim()
-        const firstName = data.fullName?.firstName?.trim()
-        const lastName = data.fullName?.lastName?.trim()
+        if (typeof data !== 'object' || data === null) {
+          sendJson(response, 400, { message: 'Некорректные данные запроса' })
+          return
+        }
+
+        const users = await readUsers()
+
+        if (url.pathname === '/api/users/login') {
+          const loginData = data as LoginData
+          const email = loginData.email?.trim().toLowerCase()
+          const password = loginData.password
+
+          if (!email || !password) {
+            sendJson(response, 400, {
+              message: 'Введите email и пароль',
+            })
+            return
+          }
+
+          const user = users.find(
+            (item) => item.email.trim().toLowerCase() === email && item.password === password
+          )
+
+          if (!user) {
+            sendJson(response, 401, {
+              message: 'Неверный email или пароль',
+            })
+            return
+          }
+
+          sendJson(response, 200, toPublicUser(user))
+          return
+        }
+
+        const registerData = data as RegisterData
+
+        const email = registerData.email?.trim().toLowerCase()
+        const phone = registerData.phone?.trim()
+        const nickname = registerData.nickname?.trim()
+        const firstName = registerData.fullName?.firstName?.trim()
+        const lastName = registerData.fullName?.lastName?.trim()
 
         if (
           !email ||
@@ -69,16 +110,16 @@ export const usersApi = (): Plugin => ({
           !nickname ||
           !firstName ||
           !lastName ||
-          !data.birthDate ||
-          !data.password
+          !registerData.birthDate ||
+          !registerData.password
         ) {
-          sendJson(response, 400, { message: 'Заполните все обязательные поля' })
+          sendJson(response, 400, {
+            message: 'Заполните все обязательные поля',
+          })
           return
         }
 
-        const users = await readUsers()
-
-        if (users.some((user) => user.email === email)) {
+        if (users.some((user) => user.email.trim().toLowerCase() === email)) {
           sendJson(response, 409, {
             message: 'Пользователь с таким email уже зарегистрирован',
           })
@@ -106,11 +147,11 @@ export const usersApi = (): Plugin => ({
           fullName: {
             firstName,
             lastName,
-            patronymic: data.fullName.patronymic?.trim() || undefined,
+            patronymic: registerData.fullName.patronymic?.trim() || undefined,
           },
           nickname,
-          birthDate: data.birthDate,
-          password: data.password,
+          birthDate: registerData.birthDate,
+          password: registerData.password,
           role: USER_ROLES.CUSTOMER,
           createdAt: new Date().toISOString(),
         }
@@ -121,7 +162,9 @@ export const usersApi = (): Plugin => ({
         sendJson(response, 201, toPublicUser(user))
       } catch (error) {
         console.error('Users API error:', error)
-        sendJson(response, 500, { message: 'Ошибка при регистрации пользователя' })
+        sendJson(response, 500, {
+          message: 'Ошибка при обработке запроса пользователя',
+        })
       }
     })
   },
