@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { USER_ROLES, useUserStore } from '@/entities/user'
 import { NAVIGATION_LINKS, routes } from '@/shared/config'
@@ -9,6 +10,7 @@ const getNavigationLinks = (isAdmin: boolean) =>
   NAVIGATION_LINKS.filter((link) => link.href !== routes.admin || isAdmin)
 
 export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) => {
+  const { t } = useTranslation()
   const user = useUserStore((state) => state.user)
 
   const navigationLinks = getNavigationLinks(user?.role === USER_ROLES.ADMIN)
@@ -17,24 +19,22 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
     <footer className={cn('flex flex-col gap-5 p-4 lg:flex-row', className)} {...rest}>
       <div className="flex w-full flex-col gap-2.5">
         <div className="flex gap-5">
-          <img src="/logo.svg" alt="Logo" />
+          <img src="/logo.svg" alt={t('footer.logoAlt')} />
+
           <div className="flex flex-col gap-1 text-sm text-text-quinary">
-            <p>© 2013-2022</p>
-            <p>iPhone sales in Moscow</p>
+            <p>{t('footer.copyright')}</p>
+            <p>{t('footer.tagline')}</p>
           </div>
         </div>
 
-        <p className="text-text-quinary text-xs">
-          *This website is not a public offer. All information provided on the site is for
-          informational purposes only.
-        </p>
+        <p className="text-text-quinary text-xs">{t('footer.disclaimer')}</p>
       </div>
 
       <nav className="w-full">
         <ul className="flex flex-col gap-3.75">
           {navigationLinks.map((link) => (
             <li key={link.href}>
-              <Link to={link.href}>{link.label}</Link>
+              <Link to={link.href}>{t(`header.${link.label}`)}</Link>
             </li>
           ))}
         </ul>
@@ -44,10 +44,12 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
         <a href="tel:+78125619662" className="font-medium text-2xl hover:underline">
           +7 812 704 86 97
         </a>
+
         <div className="flex flex-col text-text-quinary text-xs">
-          <p>Free consultation</p>
-          <p>From 10:00 to 21:00, daily</p>
+          <p>{t('footer.consultation')}</p>
+          <p>{t('footer.workingHours')}</p>
         </div>
+
         <div className="flex gap-2.5">
           <a
             href="https://t.me/emptyworrds"
@@ -57,6 +59,7 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
           >
             <img src="/footer/telegram-logo.svg" alt="Telegram" className="w-8" />
           </a>
+
           <a
             href="https://vk.com/emptyworrds"
             target="_blank"
@@ -65,6 +68,7 @@ export const Footer = ({ className = '', ...rest }: ComponentProps<'footer'>) =>
           >
             <img src="/footer/vk-logo.svg" alt="VK" className="w-8" />
           </a>
+
           <a
             href="https://wa.me/78127048697"
             target="_blank"

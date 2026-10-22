@@ -1,4 +1,5 @@
 import type { ComponentProps } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui/components/Button'
@@ -7,11 +8,13 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/shared/ui/components/
 import { AddToCartIcon, HeartIcon, StarIcon } from '@/shared/ui/icons'
 import type { Product } from '../model/types'
 import { useProductLink } from '../model/useProductLink'
+
 export interface ProductCardProps extends ComponentProps<'div'> {
   product: Product
 }
 
 export const ProductCard = ({ product, className = '', ...rest }: ProductCardProps) => {
+  const { t } = useTranslation()
   const productLink = useProductLink(product.id)
 
   const isInStock = product.availability === 'in_stock'
@@ -47,13 +50,13 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
           <TooltipTrigger asChild>
             <Button
               className="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100"
-              aria-label="Add to favorites"
+              aria-label={t('productCard.addToFavorites')}
             >
               <HeartIcon />
             </Button>
           </TooltipTrigger>
 
-          <TooltipContent>Add to favorites</TooltipContent>
+          <TooltipContent>{t('productCard.addToFavorites')}</TooltipContent>
         </Tooltip>
       </div>
 
@@ -83,12 +86,14 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
           />
 
           <span className="@[16rem]:text-base text-sm">
-            {isInStock ? 'In stock' : 'Out of stock'}
+            {isInStock ? t('productCard.inStock') : t('productCard.outOfStock')}
           </span>
         </div>
 
         {isInStock && product.warrantyPeriod && (
-          <span className="@[16rem]:text-base text-sm">Warranty: {product.warrantyPeriod}</span>
+          <span className="@[16rem]:text-base text-sm">
+            {t('productCard.warranty', { period: product.warrantyPeriod })}
+          </span>
         )}
       </div>
 
@@ -105,18 +110,18 @@ export const ProductCard = ({ product, className = '', ...rest }: ProductCardPro
           </span>
         </div>
       ) : (
-        <p className="text-sm text-text-quinary">Product is temporarily unavailable</p>
+        <p className="text-sm text-text-quinary">{t('productCard.temporarilyUnavailable')}</p>
       )}
 
       <div className="mt-auto w-full">
         {isInStock ? (
           <Button className="flex w-full items-center justify-center gap-2 rounded-full bg-primary px-4 py-2 text-white transition-colors hover:bg-secondary">
             <AddToCartIcon />
-            <span>Add to cart</span>
+            <span>{t('productCard.addToCart')}</span>
           </Button>
         ) : (
           <Button className="w-full rounded-full border border-primary bg-transparent px-4 py-2 text-primary transition-colors hover:bg-primary/10">
-            Notify me when available
+            {t('productCard.notifyWhenAvailable')}
           </Button>
         )}
       </div>

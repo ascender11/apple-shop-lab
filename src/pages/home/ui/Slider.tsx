@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next'
 import { Autoplay, Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { routes } from '@/shared/config'
 import { Link } from '@/shared/ui/components/Link'
 import { ArrowLeft, ArrowRight } from '@/shared/ui/icons'
 import { SLIDES } from '../model/constants'
@@ -8,16 +10,17 @@ import type { Slide as SlideType } from '../model/types'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
-import { routes } from '@/shared/config'
 
 export const Slider = () => {
+  const { t } = useTranslation()
+
   return (
     <section className="relative mt-6 w-full px-6 sm:mt-8 sm:px-10 xl:mt-10 xl:px-16">
       <div className="mx-auto xl:max-w-none">
         <Swiper
           modules={[Navigation, Autoplay]}
           slidesPerView={1}
-          loop={true}
+          loop
           navigation={{
             nextEl: '.home-slider__arrow--next',
             prevEl: '.home-slider__arrow--prev',
@@ -40,7 +43,7 @@ export const Slider = () => {
       <button
         type="button"
         className="home-slider__arrow--prev absolute top-1/2 left-0 z-30 hidden h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center border-none bg-transparent sm:left-0 sm:flex sm:h-10 sm:w-10 xl:left-3 xl:h-10 xl:w-10"
-        aria-label="Previous slide"
+        aria-label={t('home.slider.previousSlide')}
       >
         <ArrowLeft className="h-6 w-6 text-text-primary/50 sm:h-8 sm:w-8 xl:h-10 xl:w-10" />
       </button>
@@ -48,7 +51,7 @@ export const Slider = () => {
       <button
         type="button"
         className="home-slider__arrow--next absolute top-1/2 right-0 z-30 hidden h-8 w-8 -translate-y-1/2 cursor-pointer items-center justify-center border-none bg-transparent sm:right-0 sm:flex sm:h-10 sm:w-10 xl:right-3 xl:h-10 xl:w-10"
-        aria-label="Next slide"
+        aria-label={t('home.slider.nextSlide')}
       >
         <ArrowRight className="h-6 w-6 text-text-primary/50 sm:h-8 sm:w-8 xl:h-10 xl:w-10" />
       </button>
@@ -56,7 +59,14 @@ export const Slider = () => {
   )
 }
 
-const Slide = ({ title, specs, image, backgroundColor, color }: SlideType) => {
+const Slide = ({ translationKey, image, backgroundColor, color }: SlideType) => {
+  const { t } = useTranslation()
+
+  const title = t(`home.slider.slides.${translationKey}.title`)
+  const specs = t(`home.slider.slides.${translationKey}.specs`, {
+    returnObjects: true,
+  }) as string[]
+
   return (
     <div
       className="relative flex h-132 flex-col gap-4 px-6 py-5 sm:h-144 sm:px-8 sm:py-6"
@@ -70,21 +80,24 @@ const Slide = ({ title, specs, image, backgroundColor, color }: SlideType) => {
           >
             {title}
           </h2>
+
           <ul
             className="rounded-xl bg-black/20 px-4 py-3 text-sm leading-relaxed sm:text-lg xl:text-xl"
             style={{ color }}
           >
-            {specs.map((spec, index) => (
-              <li key={index}>{spec}</li>
+            {specs.map((spec) => (
+              <li key={spec}>{spec}</li>
             ))}
           </ul>
+
           <Link
             to={routes.catalog}
             className="link-button rounded-full px-6 py-2.5 font-semibold text-base outline"
           >
-            Learn more
+            {t('home.slider.learnMore')}
           </Link>
         </div>
+
         <img
           className="relative z-10 h-48 w-48 object-contain sm:h-64 sm:w-64"
           src={image}
@@ -103,21 +116,24 @@ const Slide = ({ title, specs, image, backgroundColor, color }: SlideType) => {
           >
             {title}
           </h2>
+
           <ul
             className="rounded-xl bg-black/20 px-4 py-3 text-sm leading-relaxed sm:text-lg xl:text-xl"
             style={{ color }}
           >
-            {specs.map((spec, index) => (
-              <li key={index}>{spec}</li>
+            {specs.map((spec) => (
+              <li key={spec}>{spec}</li>
             ))}
           </ul>
+
           <Link
             to={routes.catalog}
             className="link-button rounded-full px-6 py-2.5 font-semibold text-base outline"
           >
-            Learn more
+            {t('home.slider.learnMore')}
           </Link>
         </div>
+
         <img
           className="relative z-10 h-48 w-48 object-contain sm:h-64 sm:w-64 xl:absolute xl:top-1/2 xl:right-12 xl:h-112 xl:w-auto xl:-translate-y-1/2"
           src={image}

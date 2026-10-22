@@ -1,10 +1,12 @@
 import type { ComponentProps } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { useProductLink } from '@/entities/product'
 import { cn } from '@/shared/lib'
 import { Link } from '@/shared/ui/components/Link'
 
 export const Banner = ({ className = '' }: ComponentProps<'section'>) => {
+  const { t } = useTranslation()
   const productLink = useProductLink('1')
 
   return (
@@ -16,16 +18,18 @@ export const Banner = ({ className = '' }: ComponentProps<'section'>) => {
     >
       <img
         src="/home/phone-banner-image.png"
-        alt="iPhone 14 Pro Max"
+        alt={t('home.banner.imageAlt')}
         className="absolute top-0 left-4 w-16.25 sm:left-10 sm:w-27.5 lg:w-61.5"
       />
+
       <div className="flex flex-col gap-5">
         <div className="flex flex-col gap-1 text-white">
-          <h1 className="font-bold text-xl sm:text-3xl lg:text-6xl">iPhone 14 Pro Max</h1>
-          <p className="lg:text-2xl">at the best price in Moscow</p>
+          <h1 className="font-bold text-xl sm:text-3xl lg:text-6xl">{t('home.banner.title')}</h1>
+          <p className="lg:text-2xl">{t('home.banner.subtitle')}</p>
         </div>
+
         <Link to={productLink} className="link-button w-40">
-          Learn more
+          {t('home.banner.learnMore')}
         </Link>
       </div>
     </section>

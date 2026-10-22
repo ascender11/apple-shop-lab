@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 
 import { useUserStore } from '@/entities/user'
+import { LanguageSwitcher } from '@/features/language-switcher'
 import { NAVIGATION_LINKS, routes } from '@/shared/config'
 import { cn } from '@/shared/lib'
 import { Link } from '@/shared/ui/components/Link'
@@ -12,6 +14,7 @@ export const Header = () => {
   const user = useUserStore((state) => state.user)
   const logout = useUserStore((state) => state.logout)
   const navigate = useNavigate()
+  const { t } = useTranslation()
 
   const navigationLinks = NAVIGATION_LINKS.filter(
     (link) => link.href !== routes.admin || user?.role === 'ADMIN'
@@ -39,13 +42,15 @@ export const Header = () => {
           <ul className="hidden flex-row gap-7.5 lg:flex">
             {navigationLinks.map((link) => (
               <li key={link.id}>
-                <Link to={link.href}>{link.label}</Link>
+                <Link to={link.href}>{t(`header.${link.label}`)}</Link>
               </li>
             ))}
           </ul>
         </nav>
 
         <div className="flex flex-row items-center gap-4">
+          <LanguageSwitcher />
+
           <div className="flex items-center gap-1.25">
             <Phone />
             <a href="tel:+78125619662" className="hover:underline">
@@ -54,24 +59,23 @@ export const Header = () => {
           </div>
 
           {user ? (
-            <button type="button" onClick={handleLogout} aria-label="Выйти" title="Выйти">
+            <button type="button" onClick={handleLogout} title={t('header.logout')}>
               <LogoutIcon />
             </button>
           ) : (
             <button
               type="button"
               onClick={() => navigate(routes.auth.login)}
-              aria-label="Войти"
-              title="Войти"
+              title={t('header.login')}
             >
               <LoginIcon />
             </button>
           )}
+
           <button
             type="button"
             className="h-6 w-6 focus:outline-none lg:hidden"
             onClick={toggleMenu}
-            aria-label="Toggle menu"
           >
             <BurgerMenuIcon className={cn({ open: isMenuOpen })} />
           </button>
@@ -85,7 +89,6 @@ export const Header = () => {
         )}
         type="button"
         onClick={closeMenu}
-        aria-label="Close menu"
       />
 
       <nav
@@ -98,15 +101,16 @@ export const Header = () => {
           {navigationLinks.map((link) => (
             <li key={link.id}>
               <Link to={link.href} onClick={closeMenu}>
-                {link.label}
+                {t(`header.${link.label}`)}
               </Link>
             </li>
           ))}
+
           {user && (
             <li>
               <button type="button" onClick={handleLogout} className="flex items-center gap-2 py-2">
                 <LogoutIcon />
-                Выйти
+                {t('header.logout')}
               </button>
             </li>
           )}

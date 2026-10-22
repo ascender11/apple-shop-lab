@@ -1,0 +1,102 @@
+{
+  "header": {
+    "home": "Home",
+    "catalog": "Catalog",
+    "favorites": "Favorites",
+    "cart": "Cart",
+    "delivery": "Delivery",
+    "admin": "Administration",
+    "login": "Sign in",
+    "logout": "Sign out"
+  },
+  "home": {
+    "slider": {
+      "previousSlide": "Previous slide",
+      "nextSlide": "Next slide",
+      "learnMore": "Learn more",
+      "slides": {
+        "ipadPro13": {
+          "title": "APPLE IPAD 13 M4",
+          "specs": ["Ultra Retina XDR display", "16-core neural engine", "38.99 Wh battery"]
+        },
+        "iphone16": {
+          "title": "APPLE IPHONE 16",
+          "specs": ["Display: 6.1″ OLED — 1179 × 2556", "Chip: Apple A18", "Battery: 3477 mAh"]
+        },
+        "iphone16ProMax": {
+          "title": "APPLE IPHONE 16 PRO MAX",
+          "specs": ["Display: 6.9″ OLED — 1320 × 2868", "Chip: Apple A18 Pro", "Battery: 4676 mAh"]
+        },
+        "appleWatchSeries10": {
+          "title": "APPLE WATCH SERIES 10",
+          "specs": ["Up to 18 hours of battery life", "64 GB built-in storage", "Thickness: 9.7 mm"]
+        },
+        "ipadPro11": {
+          "title": "APPLE IPAD PRO 11 M4",
+          "specs": ["Ultra Retina XDR display", "10-core GPU", "38.99 Wh battery"]
+        }
+      }
+    },
+    "popularProducts": {
+      "title": "Buy iPhone in Moscow",
+      "subtitle": "Most popular"
+    },
+    "banner": {
+      "imageAlt": "iPhone 14 Pro Max",
+      "title": "iPhone 14 Pro Max",
+      "subtitle": "at the best price in Moscow",
+      "learnMore": "Learn more"
+    },
+    "newProducts": {
+      "title": "Newest"
+    },
+    "advantages": {
+      "title": "Our advantages",
+      "cards": {
+        "promotions": {
+          "title": "Promotions and gifts",
+          "description": "Regular promotions, bonuses and discounts. Buy Apple products at the best prices."
+        },
+        "payment": {
+          "title": "Convenient payment methods",
+          "description": "Pay by cash or card on delivery, online, or with credit."
+        },
+        "delivery": {
+          "title": "Delivery in 3 hours",
+          "description": "Fast, free delivery in Moscow within three hours on the day of your order. Delivery across Russia and pickup are also available."
+        },
+        "credit": {
+          "title": "Buy on credit",
+          "description": "Get the best credit offer from more than 30 leading banks in the country."
+        },
+        "warranty": {
+          "title": "Warranty",
+          "description": "All products on our website come with a warranty from our store or Apple."
+        }
+      }
+    },
+    "ctaBanner": {
+      "title": "Buy Apple faster and easier",
+      "description": "Create an account in a minute — and your cart, favorites and orders will always be with you.",
+      "getStarted": "Get started",
+      "learnMore": "Learn more"
+    }
+  },
+  "productCard": {
+    "addToFavorites": "Add to favorites",
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "warranty": "Warranty: {{period}}",
+    "temporarilyUnavailable": "Product is temporarily unavailable",
+    "addToCart": "Add to cart",
+    "notifyWhenAvailable": "Notify me when available"
+  },
+  "footer": {
+    "logoAlt": "Logo",
+    "copyright": "© 2013–2022",
+    "tagline": "iPhone sales in Moscow",
+    "disclaimer": "*This website is not a public offer. All information provided on the site is for informational purposes only.",
+    "consultation": "Free consultation",
+    "workingHours": "Daily, from 10:00 AM to 9:00 PM"
+  }
+}

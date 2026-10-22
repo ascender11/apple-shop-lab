@@ -1,7 +1,6 @@
 export interface Slide {
   id: number
-  title: string
-  specs: string[]
+  translationKey: 'ipadPro13' | 'iphone16' | 'iphone16ProMax' | 'appleWatchSeries10' | 'ipadPro11'
   image: string
   backgroundColor: string
   color: string
@@ -9,7 +8,6 @@ export interface Slide {
 
 export interface Advantage {
   icon: string
-  title: string
-  description: string
+  translationKey: 'promotions' | 'payment' | 'delivery' | 'credit' | 'warranty'
   gradient: string
 }
