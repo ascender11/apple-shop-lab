@@ -1,4 +1,5 @@
 import { type SubmitEvent, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useLocation, useNavigate } from 'react-router'
 
 import { userService, useUserStore } from '@/entities/user'
@@ -9,7 +10,7 @@ import { Link } from '@/shared/ui/components/Link'
 const inputClass =
   'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-text-primary outline-none transition-colors focus:border-primary'
 
-const getErrorMessage = (error: unknown): string => {
+const getErrorMessage = (error: unknown, fallback: string): string => {
   if (typeof error === 'object' && error !== null && 'response' in error) {
     const response = error.response
 
@@ -27,10 +28,11 @@ const getErrorMessage = (error: unknown): string => {
     }
   }
 
-  return error instanceof Error ? error.message : 'Не удалось войти'
+  return error instanceof Error ? error.message : fallback
 }
 
 export const LoginForm = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const setUser = useUserStore((state) => state.setUser)
@@ -54,7 +56,7 @@ export const LoginForm = () => {
       setUser(user)
       navigate('/')
     } catch (error) {
-      setError(getErrorMessage(error))
+      setError(getErrorMessage(error, t('auth.login.errors.failed')))
     } finally {
       setIsSubmitting(false)
     }
@@ -69,7 +71,7 @@ export const LoginForm = () => {
       )}
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="loginEmail">Email</Label>
+        <Label htmlFor="loginEmail">{t('auth.login.email')}</Label>
         <input
           id="loginEmail"
           className={inputClass}
@@ -82,7 +84,7 @@ export const LoginForm = () => {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="loginPassword">Пароль</Label>
+        <Label htmlFor="loginPassword">{t('auth.login.password')}</Label>
         <input
           id="loginPassword"
           className={inputClass}
@@ -105,11 +107,11 @@ export const LoginForm = () => {
         disabled={isSubmitting}
         className="w-full bg-primary py-3 font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {isSubmitting ? 'Вход...' : 'Войти'}
+        {isSubmitting ? t('auth.login.submitting') : t('auth.login.submit')}
       </Button>
 
       <p className="text-center text-sm text-text-secondary">
-        Нет аккаунта? <Link to="/auth/register">Зарегистрироваться</Link>
+        {t('auth.login.noAccount')} <Link to="/auth/register">{t('auth.login.register')}</Link>
       </p>
     </form>
   )

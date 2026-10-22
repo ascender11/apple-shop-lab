@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router'
 
 import type { RegisterData } from '@/entities/user'
@@ -24,7 +25,7 @@ const initialForm: RegisterData = {
 const inputClass =
   'w-full rounded-lg border border-border bg-background px-3 py-2.5 text-text-primary outline-none transition-colors focus:border-primary'
 
-const getErrorMessage = (error: unknown): string => {
+const getErrorMessage = (error: unknown, fallback: string): string => {
   if (typeof error === 'object' && error !== null && 'response' in error) {
     const response = error.response
 
@@ -42,12 +43,13 @@ const getErrorMessage = (error: unknown): string => {
     }
   }
 
-  return error instanceof Error ? error.message : 'Не удалось зарегистрироваться'
+  return error instanceof Error ? error.message : fallback
 }
 
 type FormSubmitEvent = Parameters<NonNullable<ComponentProps<'form'>['onSubmit']>>[0]
 
 export const RegisterForm = () => {
+  const { t } = useTranslation()
   const navigate = useNavigate()
   const setUser = useUserStore((state) => state.setUser)
 
@@ -72,7 +74,7 @@ export const RegisterForm = () => {
     setError('')
 
     if (form.password !== confirmPassword) {
-      setError('Пароли не совпадают')
+      setError(t('auth.register.errors.passwordMismatch'))
       return
     }
 
@@ -84,7 +86,7 @@ export const RegisterForm = () => {
       setUser(user)
       navigate('/')
     } catch (error) {
-      setError(getErrorMessage(error))
+      setError(getErrorMessage(error, t('auth.register.errors.failed')))
     } finally {
       setIsSubmitting(false)
     }
@@ -94,7 +96,7 @@ export const RegisterForm = () => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="lastName">Фамилия</Label>
+          <Label htmlFor="lastName">{t('auth.register.lastName')}</Label>
           <input
             id="lastName"
             className={inputClass}
@@ -106,7 +108,7 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="firstName">Имя</Label>
+          <Label htmlFor="firstName">{t('auth.register.firstName')}</Label>
           <input
             id="firstName"
             className={inputClass}
@@ -119,7 +121,7 @@ export const RegisterForm = () => {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="patronymic">Отчество</Label>
+        <Label htmlFor="patronymic">{t('auth.register.patronymic')}</Label>
         <input
           id="patronymic"
           className={inputClass}
@@ -131,7 +133,7 @@ export const RegisterForm = () => {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="registerEmail">Email</Label>
+          <Label htmlFor="registerEmail">{t('auth.register.email')}</Label>
           <input
             id="registerEmail"
             className={inputClass}
@@ -144,7 +146,7 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="phone">Телефон</Label>
+          <Label htmlFor="phone">{t('auth.register.phone')}</Label>
           <input
             id="phone"
             className={inputClass}
@@ -158,7 +160,7 @@ export const RegisterForm = () => {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="nickname">Никнейм</Label>
+        <Label htmlFor="nickname">{t('auth.register.nickname')}</Label>
         <input
           id="nickname"
           className={inputClass}
@@ -170,7 +172,7 @@ export const RegisterForm = () => {
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="birthDate">Дата рождения</Label>
+        <Label htmlFor="birthDate">{t('auth.register.birthDate')}</Label>
         <input
           id="birthDate"
           className={inputClass}
@@ -184,7 +186,7 @@ export const RegisterForm = () => {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="registerPassword">Пароль</Label>
+          <Label htmlFor="registerPassword">{t('auth.register.password')}</Label>
           <input
             id="registerPassword"
             className={inputClass}
@@ -198,7 +200,7 @@ export const RegisterForm = () => {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label htmlFor="confirmPassword">Повторите пароль</Label>
+          <Label htmlFor="confirmPassword">{t('auth.register.confirmPassword')}</Label>
           <input
             id="confirmPassword"
             className={inputClass}
@@ -223,11 +225,11 @@ export const RegisterForm = () => {
         disabled={isSubmitting}
         className="w-full bg-primary py-3 font-medium text-white hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
       >
-        {isSubmitting ? 'Регистрация...' : 'Зарегистрироваться'}
+        {isSubmitting ? t('auth.register.submitting') : t('auth.register.submit')}
       </Button>
 
       <p className="text-center text-sm text-text-secondary">
-        Уже есть аккаунт? <Link to="/auth/login">Войти</Link>
+        {t('auth.register.hasAccount')} <Link to="/auth/login">{t('auth.register.login')}</Link>
       </p>
     </form>
   )

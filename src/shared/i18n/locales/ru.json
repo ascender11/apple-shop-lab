@@ -137,5 +137,41 @@
         "accessory": "Аксессуары"
       }
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Вход",
+      "subtitle": "Войдите в свой аккаунт",
+      "email": "Email",
+      "password": "Пароль",
+      "submitting": "Вход...",
+      "submit": "Войти",
+      "noAccount": "Нет аккаунта?",
+      "register": "Зарегистрироваться",
+      "errors": {
+        "failed": "Не удалось войти"
+      }
+    },
+    "register": {
+      "title": "Регистрация",
+      "subtitle": "Создайте аккаунт, чтобы продолжить",
+      "lastName": "Фамилия",
+      "firstName": "Имя",
+      "patronymic": "Отчество",
+      "email": "Email",
+      "phone": "Телефон",
+      "nickname": "Никнейм",
+      "birthDate": "Дата рождения",
+      "password": "Пароль",
+      "confirmPassword": "Повторите пароль",
+      "submitting": "Регистрация...",
+      "submit": "Зарегистрироваться",
+      "hasAccount": "Уже есть аккаунт?",
+      "login": "Войти",
+      "errors": {
+        "passwordMismatch": "Пароли не совпадают",
+        "failed": "Не удалось зарегистрироваться"
+      }
+    }
   }
 }

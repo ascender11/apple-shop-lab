@@ -121,5 +121,41 @@
         "accessory": "Accessory"
       }
     }
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "submitting": "Signing in...",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "register": "Create an account",
+      "errors": {
+        "failed": "Failed to sign in"
+      }
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Create an account to continue",
+      "lastName": "Last name",
+      "firstName": "First name",
+      "patronymic": "Middle name",
+      "email": "Email",
+      "phone": "Phone number",
+      "nickname": "Username",
+      "birthDate": "Date of birth",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "submitting": "Creating account...",
+      "submit": "Register",
+      "hasAccount": "Already have an account?",
+      "login": "Sign in",
+      "errors": {
+        "passwordMismatch": "Passwords do not match",
+        "failed": "Registration failed"
+      }
+    }
   }
 }
