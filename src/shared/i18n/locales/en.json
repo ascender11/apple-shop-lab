@@ -200,5 +200,11 @@
       "saveChanges": "Save changes",
       "addProduct": "Add product"
     }
+  },
+  "notFound": {
+    "title": "Error 404",
+    "description": "It seems this page does not exist",
+    "goHome": "Go back home",
+    "imageAlt": "404 error"
   }
 }
